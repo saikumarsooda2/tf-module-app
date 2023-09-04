@@ -42,7 +42,7 @@ resource "aws_iam_role" "role" {
 }
 
 
-resource "aws_instance_profile" "instance_profile" {
+resource "aws_iam_instance_profile" "instance_profile" {
   name = "${var.component}-${var.env}-instance_profile"
   role = aws_iam_role.role.name
 }
@@ -80,7 +80,7 @@ resource "aws_instance" "instance" {
   ami                    = data.aws_ami.ami.id
   instance_type          = "t3.micro"
   vpc_security_group_ids = ["sg-06f9944ca8edc98f7"]
-  iam_instance_profile = aws_instance_profile.instance_profile.name
+  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
   tags = {
     Name = "${var.component}-${var.env}-ec2-instances"
   }
