@@ -47,7 +47,7 @@ resource "aws_iam_instance_profile" "instance_profile" {
 
 # sg
 resource "aws_security_group" "sg" {
-  name        = "${var.component}-${var.env}-ec2-sg"
+  name        = "${var.component}-${var.env}"
   description = "Allow TLS inbound traffic"
 
   ingress {
@@ -68,7 +68,7 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = "${var.component}-${var.env}-ec2-sg"
+    Name = "${var.component}-${var.env}"
   }
 }
 
@@ -80,7 +80,7 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = ["sg-06f9944ca8edc98f7"]
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
   tags = {
-    Name = "${var.component}-${var.env}-ec2-instances"
+    Name = "${var.component}-${var.env}"
   }
 }
 
@@ -88,7 +88,7 @@ resource "aws_instance" "instance" {
 
 resource "aws_route53_record" "dns" {
   zone_id = "Z026249313NGT4ABIR3B9"
-  name    = "${var.component}-${var.env}-ec2-dns"
+  name    = "${var.component}-${var.env}"
   type    = "A"
   ttl     = 300
   records = [aws_instance.instance.private_ip]
