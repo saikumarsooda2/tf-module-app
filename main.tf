@@ -15,7 +15,7 @@ resource "aws_iam_policy" "policy" {
           "ssm:GetParameters",
           "ssm:GetParameter"
         ],
-        "Resource": "arn:aws:ssm:us-east-1:968066185838:parameter/roboshop.${var.env}.${var.component}.*"
+        "Resource": "arn:aws:ssm:us-east-1:968066185838:parameter/roboshop.dev.frontend.*"
       }
     ]
   })
@@ -79,9 +79,10 @@ resource "aws_instance" "instance" {
   instance_type          = "t3.micro"
   vpc_security_group_ids = ["sg-06f9944ca8edc98f7"]
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
-  tags = {
+  tags = merge({
     Name = "${var.component}-${var.env}"
-  }
+  },
+    var.tag)
 }
 
 # DNS records
