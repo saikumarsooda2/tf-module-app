@@ -1,5 +1,5 @@
 variable "component" {}
 variable "env" {}
-variable "tag"{
+variable "tags"{
   default={}
 }
