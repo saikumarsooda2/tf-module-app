@@ -79,7 +79,7 @@ resource "aws_instance" "instance" {
   instance_type          = "t3.micro"
   vpc_security_group_ids = ["sg-06f9944ca8edc98f7"]
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
-  tags = merge({
+  tags = merge ({
     Name = "${var.component}-${var.env}"
   },
     var.tag)
