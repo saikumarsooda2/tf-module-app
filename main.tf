@@ -143,6 +143,7 @@ resource "aws_security_group" "sg" {
 
 
 resource "aws_instance" "instance" {
+  name = var.component
   ami                    = data.aws_ami.ami.id
   instance_type          = var.type
   vpc_security_group_ids = [aws_security_group.sg.id]
