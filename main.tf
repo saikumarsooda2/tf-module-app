@@ -1,5 +1,5 @@
 
-/*resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "policy" {
   name        = "${var.component}-${var.env}-ssm-pm-policy"
   path        = "/"
   description = "${var.component}-${var.env}-ssm-pm-policy"
@@ -20,10 +20,10 @@
       }
     ]
   })
-}*/
+}
 # aws instance role
 
-/*resource "aws_iam_role" "role" {
+resource "aws_iam_role" "role" {
   name = "${var.component}-${var.env}-ec2-role"
 
   assume_role_policy = jsonencode({
@@ -111,43 +111,7 @@ resource "null_resource" "ansible" {
       "ansible-pull -i localhost, -U https://github.com/saikumarsooda2/roboshop-ansible mainroboshop.yml -e env=dev -e role_name=${var.component}"
     ]
   }
-}*/
-
-resource "aws_security_group" "sg" {
-  name        = "${var.component}-${var.env}"
-  description = "test"
-
-  ingress {
-    description      = "TLS from VPC"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-
-  }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-
-  }
-
-  tags = {
-    Name = "${var.component}-${var.env}"
-  }
 }
 
-
-
-
-resource "aws_instance" "instance" {
-  name = var.component
-  ami                    = data.aws_ami.ami.id
-  instance_type          = var.type
-  vpc_security_group_ids = [aws_security_group.sg.id]
-  subnet_id = var.subnet_id
-}
 
 
