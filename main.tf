@@ -19,7 +19,9 @@ resource "aws_iam_policy" "policy" {
         "Resource": "arn:aws:ssm:us-east-1:968066185838:parameter/roboshop.dev.frontend.*"
       }
     ]
-  })
+  }
+
+  )
 }
 # aws instance role
 
