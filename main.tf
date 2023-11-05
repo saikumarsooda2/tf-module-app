@@ -116,7 +116,7 @@
 #}
 
 module "ec2_instance" {
-  source = "var.data"
+  ami                    = data.aws_ami.ami.id
   name = "jenkins"
   instance_type          = var.type
   key_name               = "user1"
