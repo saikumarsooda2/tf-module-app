@@ -116,6 +116,7 @@
 #}
 
 module "ec2_instance" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
   ami                    = data.aws_ami.ami.id
   name = "jenkins"
   instance_type          = var.type
