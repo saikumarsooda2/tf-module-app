@@ -112,11 +112,8 @@
 #      "sudo labauto ansible",
 #      "ansible-pull -i localhost, -U https://github.com/saikumarsooda2/roboshop-ansible mainroboshop.yml -e env=dev -e role_name=${var.component}"
 #    ]
-#  }
-#}
-
-module "ec2_instance" {
-source = "git::https://github.com/saikumarsooda2/roboshop-terraform.git"
+#
+resource module "instance" {
   ami                    = data.aws_ami.ami.id
   name = "jenkins"
   instance_type          = var.type
