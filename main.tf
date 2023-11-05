@@ -116,7 +116,7 @@
 #}
 
 module "ec2_instance" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
+source = "git::https://github.com/saikumarsooda2/roboshop-terraform.git"
   ami                    = data.aws_ami.ami.id
   name = "jenkins"
   instance_type          = var.type
